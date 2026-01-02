@@ -1,28 +1,30 @@
-package insert;
+package JDBC__DB;
 
 import jakarta.servlet.ServletException;
+import java.sql.Connection;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+;
+
 /**
- * Servlet implementation class insert
+ * Servlet implementation class Insert
  */
-@WebServlet("/insert")
-public class insert extends HttpServlet {
+@WebServlet("/Insert")
+public class Insert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public insert() {
+    public Insert() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -61,6 +63,10 @@ public class insert extends HttpServlet {
 				pw.println("<h2> Data not registered successfully </h2>");
 				
 			}
+			
+			// 🔹 Go to Home Button (ADDED)
+            pw.println("<br><a href='index.jsp'><button>Go to Home</button></a>");
+
 		}
 		catch(SQLException e) {
 			pw.println("Exception Erro "+e);
@@ -71,6 +77,8 @@ public class insert extends HttpServlet {
 		}
 		
 	}
+	
+	
 
 //	/**
 //	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

@@ -1,4 +1,4 @@
-package delete;
+package JDBC__DB;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,22 +7,21 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-import com.sun.jdi.connect.spi.Connection;
-
 /**
- * Servlet implementation class delete
+ * Servlet implementation class Delete
  */
-@WebServlet("/delete")
-public class delete extends HttpServlet {
+@WebServlet("/Delete")
+public class Delete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public delete() {
+    public Delete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,31 +34,33 @@ public class delete extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		response.setContentType("text/html");
-		PrintWriter pw = response.getWriter();
-		
-		// id value fectch
-		
+		// id value fetch
 		int id = Integer.parseInt(request.getParameter("id"));
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = (Connection) DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/employee", "root", "");
+		try {
+		    Class.forName("com.mysql.cj.jdbc.Driver");
 
-            PreparedStatement ps =
-                    ((java.sql.Connection) con).prepareStatement("DELETE FROM empdata WHERE empid=?");
+		    Connection con = DriverManager.getConnection(
+		            "jdbc:mysql://localhost:3306/employee",
+		            "root",
+		            ""
+		    );
 
-            ps.setInt(1, id);
-            ps.executeUpdate();
+		    PreparedStatement ps =
+		            con.prepareStatement("DELETE FROM empdata WHERE empid=?");
 
-            con.close();
-            response.sendRedirect("select");
+		    ps.setInt(1, id);
+		    ps.executeUpdate();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-		
-		
-   }
+		    //  Redirect to Select servlet 
+		    response.sendRedirect("Select");
+
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+
+	}
+
+	
 
 }
