@@ -36,6 +36,17 @@ public class Select extends HttpServlet {
 		
 		response.setContentType("text/html");
         PrintWriter pw = response.getWriter();
+        
+        // ADD SEARCH FORM HERE 
+        
+        pw.println("<form method='get' action='Select'>");
+        pw.println("<input type='text' name='search' placeholder='Search by ID or Name'>");
+        pw.println("<input type = 'submit' value = 'Search'>");
+        pw.println("</form><br>");
+        
+        // SEARCH FORM END 
+        
+        String search = request.getParameter("search");
 
         try {
             // Load driver
@@ -50,6 +61,17 @@ public class Select extends HttpServlet {
 
             // SQL Query
             PreparedStatement ps = con.prepareStatement("SELECT * FROM empdata");
+            
+            // SEARCH LOGIC 
+            if(search != null && !search.trim().isEmpty()) {
+            	ps = con.prepareStatement("SELECT * FROM empdata WHERE empid=? OR empname LIKE ?");
+            	
+            	ps.setString(1,  search);
+            	ps.setString(2, "%" + search + "%");
+            } else {
+            	ps = con.prepareStatement("SELECT * FROM empdata");
+            }
+            
             ResultSet rs = ps.executeQuery();
 
             pw.println("<h2>Employee Details</h2>");
