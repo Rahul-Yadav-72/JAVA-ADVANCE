@@ -10,6 +10,7 @@ import jakarta.servlet.http.Part;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
@@ -46,12 +47,13 @@ public class Upload extends HttpServlet {
 	        String fileName = filePart.getSubmittedFileName();
 	        String fileType = filePart.getContentType();
 	        InputStream fileData = filePart.getInputStream();
+	        PrintWriter pw = response.getWriter();
 
 	        try {
 	            Class.forName("com.mysql.cj.jdbc.Driver");
 
 	            Connection con = DriverManager.getConnection(
-	                "jdbc:mysql://localhost:3306/empdata",
+	                "jdbc:mysql://localhost:3306/employee",
 	                "root",
 	                ""
 	            );
@@ -66,9 +68,13 @@ public class Upload extends HttpServlet {
 	            int result = ps.executeUpdate();
 
 	            if (result > 0) {
-	                response.getWriter().println("<h3>File uploaded successfully</h3>");
+	                //response.getWriter().println("<h3>File uploaded successfully</h3>");
+	            	pw.println("<h3 style='color:green'>File uploaded successfully</h3>");
+	                pw.println("<a href='Download'><button>View File List</button></a>");
+	                pw.println("<a href='index.jsp'><button>Add New</button></a>");
 	            } else {
-	                response.getWriter().println("<h3>File upload failed</h3>");
+	               // response.getWriter().println("<h3>File upload failed</h3>");
+	            	pw.println("<h3 style='color:red'>File upload failed</h3>");
 	            }
 
 	            ps.close();
@@ -78,6 +84,8 @@ public class Upload extends HttpServlet {
 	            e.printStackTrace();
 	            response.getWriter().println("<h3>Error: " + e.getMessage() + "</h3>");
 	        }
+	        
+	
 	}
 
 }

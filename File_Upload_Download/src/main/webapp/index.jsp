@@ -16,7 +16,7 @@
 <hr>
 
 <h2>Download File</h2>
-<a href="Download?id=1">View & Download File</a>
+<a href="Download">View & Download File</a>
 
 </body>
 </html>
