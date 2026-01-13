@@ -1,1 +1,14 @@
-/.metadata/
+# Eclipse / IDE files
+.classpath
+.project
+.settings/
+
+# Server config
+Servers/
+
+# JAR files
+*.jar
+
+# Build folders
+bin/
+target/
