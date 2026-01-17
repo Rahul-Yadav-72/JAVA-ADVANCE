@@ -12,3 +12,4 @@ Servers/
 # Build folders
 bin/
 target/
+/.metadata/
