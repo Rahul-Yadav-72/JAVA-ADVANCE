@@ -13,3 +13,11 @@ Servers/
 bin/
 target/
 /.metadata/
+
+# Compiled class files
+*.class
+build/
+
+# Tomcat server files
+Servers/
+
