@@ -24,3 +24,29 @@ Servers/
 *.class
 build/
 
+# Maven
+/target/
+**/target/
+
+# Eclipse / IDE
+.classpath
+.project
+.settings/
+.metadata/
+Servers/
+
+# IntelliJ
+.idea/
+*.iml
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Compiled files
+*.class
+
+
