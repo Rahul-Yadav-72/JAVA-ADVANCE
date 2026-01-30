@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
-	@GetMapping("/")
-	public String home(Model model) {
-		model.addAttribute("msg", "Spring MVC maven demo");
-		return "home";
-	}
 
+    @GetMapping("/")
+    public String home(Model model) {
+        model.addAttribute("msg", "Spring MVC Maven is Working!");
+        return "home";
+    }
 }
