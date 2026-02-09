@@ -10,8 +10,10 @@
 <body>
 
 <h1>Home Page ..........</h1>
-<h2>Spring MVC is Working 🎉</h2>
+<h2>Spring MVC is Working</h2>
 <h3>${msg}</h3>
+
+
 
 </body>
 </html>
